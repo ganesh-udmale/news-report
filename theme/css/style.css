@@ -7,7 +7,8 @@
     position: fixed;
     border-bottom: 1px solid #ded1d1;
     margin-bottom: 10px; 
-    height: 18%;
+    padding-bottom: 10px;
+    /* height: 18%; */
     z-index: 1000;
 }
 .menu{
@@ -28,9 +29,20 @@
     margin: 0px !important;
     padding: 0px !important;
 }
+.logout{
+    margin: 20px 80px;
+    position: absolute;
+    right: 10px;
+    width: 100px;
+}
 .gal-box{
     float: left;
     width: 10%;
+}
+
+.site-title{
+    width: 80%;
+    float: left;
 }
 hr{
     margin-top: 30px;
@@ -52,4 +64,8 @@ hr{
     border-top: 1px solid #ded1d1;
     height: 10%;
     padding: 15px;
+}
+.login-form{
+    border: 1px solid gray;
+    padding: 30px;
 }

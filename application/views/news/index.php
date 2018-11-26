@@ -1,4 +1,8 @@
-
+<?php       
+    if ($this->session->userdata('is_authenticated') == FALSE) {
+        redirect('users/login'); // the user is not logged in, redirect them!
+    }
+?>
 <div class="pull-right">
     <a class="btn btn-success" href="<?php echo site_url('news/create') ?>"> Create New Item</a>
 </div>

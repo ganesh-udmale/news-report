@@ -1,3 +1,8 @@
+<?php       
+    if ($this->session->userdata('is_authenticated') == FALSE) {
+        redirect('users/login'); // the user is not logged in, redirect them!
+    }
+?>
 <h2><?php echo $title; ?></h2>
  
 <?php

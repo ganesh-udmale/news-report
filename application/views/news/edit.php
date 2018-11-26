@@ -1,3 +1,8 @@
+<?php       
+    if ($this->session->userdata('is_authenticated') == FALSE) {
+        redirect('users/login'); // the user is not logged in, redirect them!
+    }
+?>
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">            

@@ -1,3 +1,8 @@
+<?php       
+    if ($this->session->userdata('is_authenticated') == FALSE) {
+        redirect('users/login'); // the user is not logged in, redirect them!
+    }
+?>
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
     <div class="alert alert-success">
