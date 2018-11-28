@@ -17,7 +17,7 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 /vendor/
 
 # /application/config/database.php
-application/
+!application/
 
 # IDE Files
 #-------------------------
