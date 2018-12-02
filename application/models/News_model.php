@@ -13,7 +13,15 @@ class News_model extends CI_Model {
             $query = $this->db->get('news');
             return $query->result();//result_array()
         }
- 
+//  $this->db->select('news.name as nm');
+//  $this->db->from('news');
+//  $this->db->join('users', 'news.id=users.user_id');
+//  $this->db->where('news.id', 1);
+// $data = $this->db->get();
+// echo '<pre>';
+// print_r($data->result());
+// die;
+
         $query = $this->db->get_where('news', array('slug' => $slug));
         return $query->row_array();
     }
