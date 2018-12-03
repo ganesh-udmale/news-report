@@ -17,8 +17,9 @@
         <h1 class="text-center">News Report </h1>
         <p class="menu">
             <a href="<?php echo base_url('news'); ?>">Home</a> | 
-            <a href="<?php echo site_url('news/create'); ?>">Add News</a>
+            <!-- <a href="<?php //echo site_url('news/create'); ?>">Add News</a> -->
             <a href="<?php echo site_url('movies/index'); ?>">Movies</a>
+            <a href="<?php echo site_url('actors/index'); ?>">Actor</a>
         </p>
     </div> 
     <div class="pull-right logout">
@@ -27,7 +28,7 @@
             if ($this->session->userdata('is_authenticated') == TRUE) {
                 // redirect('users/login'); // the user is not logged in, redirect them!
                 ?>
-                 <a class="btn btn-success" href="<?php echo site_url('users/logout') ?>"> Logout </a>
+                 <a class="btn btn-danger" href="<?php echo site_url('users/logout') ?>"> Logout </a>
                 <?php
             }         
         ?>
