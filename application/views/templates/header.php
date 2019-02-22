@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>theme/css/bootstrap.min.css" />
     <link rel="stylesheet" href="<?php echo base_url(); ?>theme/css/style.css" />
     <script type="text/javascript" src="<?php echo base_url(); ?>theme/js/bootstrap.min.js" > </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
 <div class="header" >

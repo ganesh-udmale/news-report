@@ -49,6 +49,40 @@ class Movies extends CI_Controller {
             $this->load->view('templates/footer');
         }
     }
+
+
+
+    public function edit()
+    {
+        $id = $this->uri->segment(3);
+        
+        if (empty($id))
+        {
+            show_404();
+        }
+       
+        $this->load->helper('form');        
+        
+        $data['title'] = 'Edit Movies';        
+        $data['movies'] = $this->movies_model->getMoviesById($id);
+        $data['actors'] = $this->actors_model->get_actors();
+        $this->form_validation->set_rules('movie_name', 'Movie Name', 'required');
+        // $this->form_validation->set_rules('text', 'Text', 'required');
+ 
+        if ($this->form_validation->run() === FALSE)
+        {
+            // print_r($data); die;
+            $this->load->view('templates/header', $data);
+            $this->load->view('movies/edit', $data);
+            $this->load->view('templates/footer');
+ 
+        }
+        else{
+            $this->movies_model->updatesMovies($id);
+            //$this->load->view('news/success');
+            redirect( base_url() . 'index.php/movies');
+        }
+    }
 }
 
 ?>

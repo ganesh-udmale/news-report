@@ -29,7 +29,7 @@
             <td>
                 <a href="<?php echo site_url('news/view/'.$actor->id); ?>">View</a> | 
                 <a href="<?php echo site_url('news/edit/'.$actor->id); ?>">Edit</a> | 
-                <a href="<?php echo site_url('news/delete/'.$actor->id); ?>" onClick="return confirm('Are you sure you want to delete?')">Delete</a>
+                <a id="delete" href="javascript:void(0);" onClick="deleteActor('<?php echo $actor->id ?>'')">Delete</a>
             </td>
         </tr>
 <?php endforeach; ?>
@@ -40,3 +40,34 @@
   <?php } ?>
 </tbody>
 </table>
+
+<script>
+    $(document).ready(function(){
+        // $("#delete").click(function(event){
+           
+        // })
+        });
+
+
+         function deleteActor(id){
+           var isConf = confirm('Are you sure you want to delete?');
+           alert(isConf);
+           if(isConf){
+               alert(isConf)
+                // var href = <?php echo base_url() ?>actors
+                var btn = this;
+                $.ajax({
+                type: "GET",
+                url: <?php echo base_url(); ?>index.php/iris/,
+                data: {'id': id}
+                success: function(response) {
+                    if (response == "Success"){
+                    $(btn).closest('tr').fadeOut("slow");
+                    }else {
+                    alert("Error");
+                    }            }
+                });
+            }
+            event.preventDefault();
+            }
+</script>
