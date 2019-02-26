@@ -52,8 +52,7 @@ class Movies extends CI_Controller {
 
 
 
-    public function edit()
-    {
+    public function edit(){
         $id = $this->uri->segment(3);
         
         if (empty($id))
@@ -82,6 +81,17 @@ class Movies extends CI_Controller {
             //$this->load->view('news/success');
             redirect( base_url() . 'index.php/movies');
         }
+    }
+
+    /*
+        Delete Movie By Id
+    */
+    public function deleteMovie(){
+        $movId = $_POST['movie_id'];
+        if(empty($movId)){
+            show_404();
+        }
+        echo $this->movies_model->deleteMovieById($movId);
     }
 }
 

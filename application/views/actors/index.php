@@ -19,17 +19,16 @@
     <tbody>
     <?php if(!empty($actors)){ ?>
 <?php $cnt=1; foreach ($actors as $actor): ?>
-        <tr>
+        <tr id="actor_<?php echo $actor->id; ?>">
         <td> <?php echo $cnt++; ?> </td>
             <td><?php echo $actor->actor_name; ?></td>
             <td><?php echo $actor->dob; ?></td>
             <td><?php echo $actor->city; ?></td>            
-            <td><?php echo $actor->description; ?></td>
-            
+            <td><?php echo $actor->description; ?></td>            
             <td>
-                <a href="<?php echo site_url('news/view/'.$actor->id); ?>">View</a> | 
-                <a href="<?php echo site_url('news/edit/'.$actor->id); ?>">Edit</a> | 
-                <a id="delete" href="javascript:void(0);" onClick="deleteActor('<?php echo $actor->id ?>'')">Delete</a>
+                <a href="<?php echo site_url('actors/view/'.$actor->id); ?>">View</a> | 
+                <a href="<?php echo site_url('actors/edit/'.$actor->id); ?>">Edit</a> | 
+                <a id="delete" href="javascript:void(0);" onClick="deleteActor('<?php echo $actor->id ?>')">Delete</a>
             </td>
         </tr>
 <?php endforeach; ?>
@@ -48,26 +47,22 @@
         // })
         });
 
-
-         function deleteActor(id){
-           var isConf = confirm('Are you sure you want to delete?');
-           alert(isConf);
-           if(isConf){
-               alert(isConf)
-                // var href = <?php echo base_url() ?>actors
-                var btn = this;
+        function deleteActor(act_id){
+           var isConf = confirm('Are you sure you want to delete?');        
+            if(isConf){ 
                 $.ajax({
-                type: "GET",
-                url: <?php echo base_url(); ?>index.php/iris/,
-                data: {'id': id}
-                success: function(response) {
-                    if (response == "Success"){
-                    $(btn).closest('tr').fadeOut("slow");
-                    }else {
-                    alert("Error");
-                    }            }
+                    type: "POST",
+                    url: '<?php echo base_url(); ?>actors/deleteActor',
+                    data: {'action': 'deleteActor', 'actor_id': act_id},
+                    success: function(response) {
+                        if (response == "1" || response == "true"){ 
+                            $('#actor_'+act_id).remove();
+                        }else {
+                        // alert("Error");
+                        }        
+                    }
                 });
             }
             event.preventDefault();
-            }
+        }
 </script>

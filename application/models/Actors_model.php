@@ -9,7 +9,10 @@
             if($id == FALSE){
                 $query = $this->db->get('actors');
                 return $query->result();
-            }
+            }else{ 
+                $query = $this->db->get_where('actors', array('id'=> $id));
+                return $query->row_array();
+            }           
         }
 
         public function set_actor($id = 0){
@@ -25,6 +28,16 @@
             // echo '<pre>'; print_r($data);
             if($id == 0){
                 return $this->db->insert('actors',$data);
+            }else{
+                $this->db->where('id',$id);
+                return $this->db->update('actors',$data);
+            }
+        }
+
+        public function delete_actor($id){
+            if($id){
+                $this->db->where('id', $id);
+                return $this->db->delete('actors');
             }
         }
 

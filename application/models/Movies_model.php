@@ -79,6 +79,13 @@
         }
     }
 
+    public function deleteMovieById($id){
+        if($id){
+            $this->db->where('id',$id);
+            return $this->db->delete('movies');
+        }
+    }
+
     }
 
 ?>

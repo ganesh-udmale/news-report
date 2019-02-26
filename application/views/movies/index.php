@@ -20,7 +20,7 @@
     <tbody>
     <?php if(!empty($movies)){ ?>
 <?php $cnt=1; foreach ($movies as $movie): ?>
-        <tr>
+        <tr id="movie_<?php echo $movie->id; ?>">
         <td> <?php echo $cnt++; ?> </td>
             <td><?php echo $movie->movie_name; ?></td>
             <td><?php echo $movie->actor_id; ?></td>
@@ -30,8 +30,8 @@
             
             <td>
                 <a href="<?php echo site_url('movies/view/'.$movie->id); ?>">View</a> | 
-                <a href="<?php echo site_url('movies/edit/'.$movie->id); ?>">Edit</a> | 
-                <a href="<?php echo site_url('movies/delete/'.$movie->id); ?>" onClick="return confirm('Are you sure you want to delete?')">Delete</a>
+                <a href="<?php echo site_url('movies/edit/'.$movie->id); ?>">Edit</a> |                 
+                <a id="delete" href="javascript:void(0);" onClick="deleteMovie('<?php echo $movie->id ?>')">Delete</a>
             </td>
         </tr>
 <?php endforeach; ?>
@@ -42,3 +42,23 @@
   <?php } ?>
 </tbody>
 </table>
+<script>
+function deleteMovie(mov_id){
+    var isConf = confirm('Are you sure you want to delete?');        
+    if(isConf){ 
+        $.ajax({
+            type: "POST",
+            url: '<?php echo base_url(); ?>movies/deleteMovie',
+            data: {'action': 'deleteMovie', 'movie_id': mov_id},
+            success: function(response) {
+                if (response == "1" || response == "true"){ 
+                    $('#movie_'+mov_id).remove();
+                }else {
+                // alert("Error");
+                }        
+            }
+        });
+    }
+    event.preventDefault();
+}
+</script>
